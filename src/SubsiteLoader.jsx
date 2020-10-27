@@ -28,7 +28,7 @@ const SubsiteLoader = ({ content, pathname }) => {
   return subsite?.data && !subsite?.loading ? (
     <>
       <BodyClass
-        className={`subsite subsite-${subsite.subsite_css_class?.token}`}
+        className={`subsite subsite-${subsite.data.subsite_css_class?.token}`}
       />
     </>
   ) : null;
