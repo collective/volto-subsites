@@ -11,7 +11,7 @@ import { BodyClass } from '@plone/volto/helpers';
 
 const SubsiteLoader = ({ content, pathname }) => {
   const dispatch = useDispatch();
-  const subsiteEndpoint = content['@components']?.subsite
+  const subsiteEndpoint = content?.['@components']?.subsite
     ? content['@components'].subsite['@id']
     : null;
   const subsite = useSelector((state) => state.content?.subrequests?.subsite);
