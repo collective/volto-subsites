@@ -7,7 +7,9 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { getContent, resetContent } from '@plone/volto/actions';
-import { BodyClass, flattenToAppURL } from '@plone/volto/helpers';
+import { BodyClass } from '@plone/volto/helpers';
+
+import { isSubsiteRoot } from './utils';
 import cx from 'classnames';
 
 const SubsiteLoader = ({ content }) => {
@@ -27,9 +29,6 @@ const SubsiteLoader = ({ content }) => {
     };
   }, [content]);
 
-  let pathname = location.pathname.endsWith('/')
-    ? location.pathname.slice(0, -1)
-    : location.pathname;
   return subsite && subsite.data?.['@id'] && !subsite.loading ? (
     <>
       <BodyClass
@@ -37,8 +36,7 @@ const SubsiteLoader = ({ content }) => {
           'subsite',
           `subsite-${subsite.data.subsite_css_class?.token}`,
           {
-            'subsite-root':
-              pathname === flattenToAppURL(subsite?.data?.['@id'] ?? ''),
+            'subsite-root': isSubsiteRoot(location.pathname, subsite.data),
           },
         )}
       />
