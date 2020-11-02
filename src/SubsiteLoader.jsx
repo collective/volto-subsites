@@ -6,7 +6,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { getContent, resetContent } from '@plone/volto/actions';
+
+import { getSubsite, resetSubsite } from './actions';
 import { BodyClass } from '@plone/volto/helpers';
 
 import { isSubsiteRoot } from './utils';
@@ -17,26 +18,26 @@ const SubsiteLoader = ({ content }) => {
   const subsiteEndpoint = content?.['@components']?.subsite
     ? content['@components'].subsite['@id']
     : null;
-  const subsite = useSelector((state) => state.content?.subrequests?.subsite);
+  const subsite = useSelector((state) => state.subsite.data);
   const location = useLocation();
 
   useEffect(() => {
     if (subsiteEndpoint && !subsite?.loading) {
-      dispatch(getContent(subsiteEndpoint, null, 'subsite'));
+      dispatch(getSubsite(subsiteEndpoint));
     }
     return () => {
-      subsiteEndpoint && dispatch(resetContent(subsiteEndpoint));
+      subsiteEndpoint && dispatch(resetSubsite(subsiteEndpoint));
     };
   }, [content]);
 
-  return subsite && subsite.data?.['@id'] && !subsite.loading ? (
+  return subsite && subsite?.['@id'] && !subsite.loading ? (
     <>
       <BodyClass
         className={cx(
           'subsite',
-          `subsite-${subsite.data.subsite_css_class?.token}`,
+          `subsite-${subsite.subsite_css_class?.token}`,
           {
-            'subsite-root': isSubsiteRoot(location.pathname, subsite.data),
+            'subsite-root': isSubsiteRoot(location.pathname, subsite),
           },
         )}
       />
