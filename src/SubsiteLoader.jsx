@@ -18,7 +18,7 @@ const SubsiteLoader = ({ content }) => {
   const subsiteEndpoint = content?.['@components']?.subsite
     ? content['@components'].subsite['@id']
     : null;
-  const subsite = useSelector((state) => state.subsite.data);
+  const subsite = useSelector(state => state.subsite?.data);
   const location = useLocation();
 
   useEffect(() => {
@@ -45,6 +45,6 @@ const SubsiteLoader = ({ content }) => {
   ) : null;
 };
 
-export default connect((state) => ({
+export default connect(state => ({
   content: state.content.data,
 }))(SubsiteLoader);

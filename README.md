@@ -18,7 +18,6 @@ Get subsite data from the redux state in your components. For example:
 ```js
 import React from 'React';
 import { connect } from 'react-redux';
-import ScrollToTop from '@italia/components/ItaliaTheme/ScrollToTop/ScrollToTop';
 import { SubsiteLoader } from 'volto-subsites';
 
 const AppExtras = ({ pathname }) => {
@@ -49,8 +48,8 @@ class Header extends Component {
     );
   }
 }
-export default connect((state) => ({
+export default connect(state => ({
   token: state.userSession.token,
-  subsite: state.content.subrequests?.subsite?.data,
+  subsite: state.subsite?.data,
 }))(Header);
 ```
