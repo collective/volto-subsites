@@ -21,7 +21,7 @@ export const subsiteReducer = (state = initialState, action = {}) => {
       };
     case `${GET_SUBSITE}_SUCCESS`:
       let data = action.result?.['@id'] ? action.result : {};
-      console.log(data, Object.keys(data).length);
+
       return {
         ...state,
         data: Object.keys(data).length > 0 ? data : null,
