@@ -11,5 +11,14 @@ export default (config) => {
     subsite: subsiteReducer,
   };
 
+  config.settings.extendableAsyncConnect = [
+    ...config.settings.extendableAsyncConnect,
+    {
+      key: 'subsite',
+      promise: ({ location, store: { dispatch } }) => {
+        __SERVER__ && dispatch(getSubsite());
+      },
+    },
+  ];
   return config;
 };
