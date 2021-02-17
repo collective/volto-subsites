@@ -16,15 +16,14 @@ export default (config) => {
     ...config.settings.extendableAsyncConnect,
     {
       key: 'subsite',
-      promise: ({ location, store: { dispatch } }) => {
+      promise: ({ location, store: { dispatch } }) =>
         __SERVER__ &&
-          dispatch(
-            getSubsite(
-              config.settings.apiPath +
-                flattenToAppURL(location.pathname + '@subsite'),
-            ),
-          );
-      },
+        dispatch(
+          getSubsite(
+            config.settings.apiPath +
+              flattenToAppURL(location.pathname + '@subsite'),
+          ),
+        ),
     },
   ];
   return config;
