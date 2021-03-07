@@ -12,19 +12,27 @@ export default (config) => {
     subsite: subsiteReducer,
   };
 
-  config.settings.extendableAsyncConnect = [
-    ...config.settings.extendableAsyncConnect,
+  config.settings.asyncPropsExtenders = [
+    ...(config.settings.asyncPropsExtenders ?? []),
     {
-      key: 'subsite',
-      promise: ({ location, store: { dispatch } }) =>
-        __SERVER__ &&
-        dispatch(
-          getSubsite(
-            config.settings.apiPath +
-              flattenToAppURL(location.pathname + '@subsite'),
-          ),
-        ),
+      path: '/',
+      extend: (dispatchActions) => {
+        dispatchActions.push({
+          key: 'subsite',
+          promise: ({ location, store: { dispatch } }) =>
+            __SERVER__ &&
+            dispatch(
+              getSubsite(
+                config.settings.apiPath +
+                  flattenToAppURL(location.pathname + '@subsite'),
+              ),
+            ),
+        });
+
+        return dispatchActions;
+      },
     },
   ];
+
   return config;
 };
