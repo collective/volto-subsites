@@ -8,6 +8,8 @@ Created with [voltocli](https://github.com/nzambello/voltocli).
 
 ## Usage
 
+> If you're using Volto < 12, then use [v1.1.0](https://github.com/collective/volto-subsites/tree/v1.1.0)
+
 Simply load the addon in your project.
 
 Put <SubsiteLoader pathname={this.props.pathname} /> wherever you want. This component loads the config for subsite and add subsite classes to body.
