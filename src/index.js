@@ -12,27 +12,27 @@ export default (config) => {
     subsite: subsiteReducer,
   };
 
-  config.settings.asyncPropsExtenders = [
-    ...(config.settings.asyncPropsExtenders ?? []),
-    {
-      path: '/',
-      extend: (dispatchActions) => {
-        dispatchActions.push({
-          key: 'subsite',
-          promise: ({ location, store: { dispatch } }) =>
-            __SERVER__ &&
-            dispatch(
-              getSubsite(
-                config.settings.apiPath +
-                  flattenToAppURL(location.pathname + '@subsite'),
-              ),
-            ),
-        });
+  // config.settings.asyncPropsExtenders = [
+  //   ...(config.settings.asyncPropsExtenders ?? []),
+  //   {
+  //     path: '/',
+  //     extend: (dispatchActions) => {
+  //       dispatchActions.push({
+  //         key: 'subsite',
+  //         promise: ({ location, store: { dispatch } }) =>
+  //           __SERVER__ &&
+  //           dispatch(
+  //             getSubsite(
+  //               config.settings.apiPath +
+  //                 flattenToAppURL(location.pathname + '@subsite'),
+  //             ),
+  //           ),
+  //       });
 
-        return dispatchActions;
-      },
-    },
-  ];
+  //       return dispatchActions;
+  //     },
+  //   },
+  // ];
 
   return config;
 };
