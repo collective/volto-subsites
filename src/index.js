@@ -6,7 +6,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 export { SubsiteLoader, getSubsite, resetSubsite };
 export { isSubsiteRoot };
 
-export default (config) => {
+export default config => {
   config.addonReducers = {
     ...config.addonReducers,
     subsite: subsiteReducer,
@@ -16,18 +16,23 @@ export default (config) => {
     ...(config.settings.asyncPropsExtenders ?? []),
     {
       path: '/',
-      extend: (dispatchActions) => {
-        dispatchActions.push({
-          key: 'subsite',
-          promise: ({ location, store: { dispatch } }) =>
-            __SERVER__ &&
-            dispatch(
-              getSubsite(
-                config.settings.apiPath +
-                  flattenToAppURL(location.pathname + '@subsite'),
+      extend: dispatchActions => {
+        if (
+          dispatchActions.filter(asyncAction => asyncAction.key === 'subsite')
+            .length === 0
+        ) {
+          dispatchActions.push({
+            key: 'subsite',
+            promise: ({ location, store: { dispatch } }) =>
+              __SERVER__ &&
+              dispatch(
+                getSubsite(
+                  config.settings.apiPath +
+                    flattenToAppURL(location.pathname + '@subsite'),
+                ),
               ),
-            ),
-        });
+          });
+        }
 
         return dispatchActions;
       },
