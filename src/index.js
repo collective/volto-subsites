@@ -1,3 +1,4 @@
+import navSVG from '@plone/volto/icons/nav.svg';
 import SubsiteLoader from './SubsiteLoader';
 import { isSubsiteRoot } from './utils';
 import { getSubsite, resetSubsite } from './actions';
@@ -6,7 +7,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 export { SubsiteLoader, getSubsite, resetSubsite };
 export { isSubsiteRoot };
 
-export default config => {
+export default (config) => {
   config.addonReducers = {
     ...config.addonReducers,
     subsite: subsiteReducer,
@@ -16,9 +17,9 @@ export default config => {
     ...(config.settings.asyncPropsExtenders ?? []),
     {
       path: '/',
-      extend: dispatchActions => {
+      extend: (dispatchActions) => {
         if (
-          dispatchActions.filter(asyncAction => asyncAction.key === 'subsite')
+          dispatchActions.filter((asyncAction) => asyncAction.key === 'subsite')
             .length === 0
         ) {
           dispatchActions.push({
@@ -38,6 +39,8 @@ export default config => {
       },
     },
   ];
+
+  config.settings.controlPanelsIcons['subsites-settings'] = navSVG;
 
   return config;
 };
