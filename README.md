@@ -1,6 +1,7 @@
 # volto-subsites
 
-Volto addon to manage subsites
+Volto addon to manage subsites.
+Intended to be used with [collective.volto.subsites](https://github.com/collective/collective.volto.subsites/).
 
 To be used with mrs-developer, see [Volto docs](https://docs.voltocms.com/customizing/add-ons/) for further usage informations.
 
