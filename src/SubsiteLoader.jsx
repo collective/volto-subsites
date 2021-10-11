@@ -24,7 +24,9 @@ const SubsiteLoader = ({ content }) => {
 
   useEffect(() => {
     if (subsiteEndpoint) {
-      if (!subsiteState?.loadingResults && !subsiteState?.data) {
+      console.log(subsiteState);
+      if (!subsiteState?.loadingResults && subsiteState?.data !== null) {
+        console.log('dispatcho');
         dispatch(getSubsite(flattenToAppURL(subsiteEndpoint)));
       }
       return () => {
