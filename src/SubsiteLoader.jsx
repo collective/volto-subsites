@@ -6,7 +6,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
-
+import { isEqual } from 'lodash';
 import { getSubsite, resetSubsite } from './actions';
 import { BodyClass, flattenToAppURL } from '@plone/volto/helpers';
 
@@ -23,14 +23,16 @@ const SubsiteLoader = ({ content }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (subsiteEndpoint && !subsiteState?.loadingResults && !subsite) {
-      dispatch(getSubsite(flattenToAppURL(subsiteEndpoint)));
+    if (subsiteEndpoint) {
+      if (!subsiteState?.loadingResults && !subsiteState?.data) {
+        dispatch(getSubsite(flattenToAppURL(subsiteEndpoint)));
+      }
+      return () => {
+        subsiteEndpoint &&
+          dispatch(resetSubsite(flattenToAppURL(subsiteEndpoint)));
+      };
     }
-    return () => {
-      subsiteEndpoint &&
-        dispatch(resetSubsite(flattenToAppURL(subsiteEndpoint)));
-    };
-  }, [content, subsiteEndpoint, subsite]);
+  }, [content, subsiteEndpoint]);
 
   return subsite && subsite?.['@id'] && !subsite.loading ? (
     <>
