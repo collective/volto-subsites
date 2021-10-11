@@ -18,18 +18,19 @@ const SubsiteLoader = ({ content }) => {
   const subsiteEndpoint = content?.['@components']?.subsite
     ? content['@components'].subsite['@id']
     : null;
+  const subsiteState = useSelector((state) => state.subsite);
   const subsite = useSelector((state) => state.subsite?.data);
   const location = useLocation();
 
   useEffect(() => {
-    if (subsiteEndpoint && !subsite?.loading) {
+    if (subsiteEndpoint && !subsiteState?.loadingResults && !subsite) {
       dispatch(getSubsite(flattenToAppURL(subsiteEndpoint)));
     }
     return () => {
       subsiteEndpoint &&
         dispatch(resetSubsite(flattenToAppURL(subsiteEndpoint)));
     };
-  }, [content]);
+  }, [content, subsiteEndpoint, subsite]);
 
   return subsite && subsite?.['@id'] && !subsite.loading ? (
     <>
