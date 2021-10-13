@@ -8,8 +8,8 @@ import { GET_SUBSITE, RESET_SUBSITE } from '../actions';
 const initialState = {
   error: null,
   hasErrror: false,
-  result: [],
   loadingResults: false,
+  loaded: false,
 };
 
 export const subsiteReducer = (state = initialState, action = {}) => {
@@ -26,6 +26,7 @@ export const subsiteReducer = (state = initialState, action = {}) => {
         ...state,
         data: Object.keys(data).length > 0 ? data : null,
         loadingResults: false,
+        loaded: true,
       };
     case `${GET_SUBSITE}_FAIL`:
       return {
@@ -37,7 +38,7 @@ export const subsiteReducer = (state = initialState, action = {}) => {
     case RESET_SUBSITE:
       return {
         ...state,
-        subsite: null,
+        data: null,
       };
     default:
       return state;
