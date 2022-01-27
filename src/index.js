@@ -26,15 +26,15 @@ export default (config) => {
             key: 'subsite',
             promise: ({ location, store: { dispatch } }) =>
               __SERVER__ &&
+              !location.pathname.match(/.*@subsite$/) &&
               dispatch(
                 getSubsite(
                   config.settings.apiPath +
-                    flattenToAppURL(location.pathname + '@subsite'),
+                  flattenToAppURL(location.pathname + '@subsite'),
                 ),
               ),
           });
         }
-
         return dispatchActions;
       },
     },
