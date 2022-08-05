@@ -21,6 +21,8 @@ const SubsiteLoader = ({ content }) => {
   const subsite = useSelector((state) => state.subsite?.data);
   const location = useLocation();
 
+  console.log(subsiteState);
+
   useEffect(() => {
     if (subsiteEndpoint) {
       if (

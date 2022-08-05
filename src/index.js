@@ -28,7 +28,10 @@ export default (config) => {
               __SERVER__ &&
               !location.pathname.match(/.*@subsite$/) &&
               dispatch(
-                getSubsite(flattenToAppURL(location.pathname + '@subsite')),
+                getSubsite(
+                  config.settings.apiPath +
+                    flattenToAppURL(location.pathname + '@subsite'),
+                ),
               ),
           });
         }
