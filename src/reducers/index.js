@@ -1,6 +1,9 @@
 /**
  * Subsite reducer.
  * @module reducers/subsiteReducer
+ *
+ * DEPRECATED
+ *
  */
 
 import { GET_SUBSITE, RESET_SUBSITE } from '../actions';

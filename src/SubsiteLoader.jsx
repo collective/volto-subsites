@@ -3,49 +3,24 @@
  * @module components/theme/SubsiteLoader/SubsiteLoader
  */
 
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { getSubsite } from './actions';
-import { BodyClass, flattenToAppURL } from '@plone/volto/helpers';
-
-import { isSubsiteRoot } from './utils';
+import { BodyClass } from '@plone/volto/helpers';
+import React from 'react';
+import { connect } from 'react-redux';
 import cx from 'classnames';
+import { isSubsiteRoot } from './utils';
+import { useLocation } from 'react-router-dom';
 
 const SubsiteLoader = ({ content }) => {
-  const dispatch = useDispatch();
-  const subsiteEndpoint = content?.['@components']?.subsite
-    ? content['@components'].subsite['@id']
-    : null;
-  const subsiteState = useSelector((state) => state.subsite);
-  const subsite = useSelector((state) => state.subsite?.data);
+  const subsite = content?.['@components'].subsite;
+  // const subsite = useSelector((state) => state.subsite);
   const location = useLocation();
 
-  useEffect(() => {
-    if (subsiteEndpoint) {
-      if (
-        !subsiteState?.loadingResults &&
-        (subsite == null || subsite?.['@id'] !== subsiteEndpoint)
-      ) {
-        dispatch(getSubsite(flattenToAppURL(subsiteEndpoint)));
-      }
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subsiteEndpoint]);
-
-  return subsite && subsite?.['@id'] && !subsite.loading ? (
-    <>
-      <BodyClass
-        className={cx(
-          'subsite',
-          `subsite-${subsite.subsite_css_class?.token}`,
-          {
-            'subsite-root': isSubsiteRoot(location.pathname, subsite),
-          },
-        )}
-      />
-    </>
+  return subsite && subsite['@id'] ? (
+    <BodyClass
+      className={cx('subsite', `subsite-${subsite.subsite_css_class?.token}`, {
+        'subsite-root': isSubsiteRoot(location.pathname, subsite),
+      })}
+    />
   ) : null;
 };
 

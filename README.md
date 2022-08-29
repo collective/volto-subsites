@@ -53,6 +53,10 @@ class Header extends Component {
 }
 export default connect(state => ({
   token: state.userSession.token,
-  subsite: state.subsite?.data,
+  subsite: state.content?.data?.['@components']?.subsite;
 }))(Header);
 ```
+
+> In `volto-subsites >= 3` the subsite data are exposed within the content (i.e. ['@components'].subsite), improving
+> performance, removing unuseful calls to API.
+
