@@ -3,17 +3,25 @@
  * @module components/theme/SubsiteLoader/SubsiteLoader
  */
 
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+
 import { BodyClass } from '@plone/volto/helpers';
-import React from 'react';
-import { connect } from 'react-redux';
 import cx from 'classnames';
 import { isSubsiteRoot } from './utils';
+import { setSubsite } from './actions';
 import { useLocation } from 'react-router-dom';
 
 const SubsiteLoader = ({ content }) => {
   const subsite = content?.['@components'].subsite;
   // const subsite = useSelector((state) => state.subsite);
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  // BBB: copy state.content['@components].subsite to state.subsite for backward compatibility
+  useEffect(() => {
+    dispatch(setSubsite(subsite));
+  }, [dispatch, subsite]);
 
   return subsite && subsite['@id'] ? (
     <BodyClass

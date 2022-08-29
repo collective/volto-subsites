@@ -1,20 +1,20 @@
+import { getSubsite, resetSubsite } from './actions';
+
 import SubsiteLoader from './SubsiteLoader';
 import { isSubsiteRoot } from './utils';
 import navSVG from '@plone/volto/icons/nav.svg';
+import { subsiteReducer } from './reducers';
 
 export { SubsiteLoader, isSubsiteRoot };
 
-// DEPRECATED
-// import { subsiteReducer } from './reducers';
-// import { getSubsite, resetSubsite } from './actions';
-// export { getSubsite, resetSubsite };
+export { getSubsite, resetSubsite };
 
 export default (config) => {
-  // DEPRECATED
-  // config.addonReducers = {
-  //   ...config.addonReducers,
-  //   subsite: subsiteReducer,
-  // };
+  // DEPRECATED: BBB
+  config.addonReducers = {
+    ...config.addonReducers,
+    subsite: subsiteReducer,
+  };
 
   // DEPRECATED
   // config.settings.asyncPropsExtenders = [

@@ -6,7 +6,7 @@
  *
  */
 
-import { GET_SUBSITE, RESET_SUBSITE } from '../actions';
+import { GET_SUBSITE, RESET_SUBSITE, SET_SUBSITE } from '../actions';
 
 const initialState = {
   error: null,
@@ -37,6 +37,13 @@ export const subsiteReducer = (state = initialState, action = {}) => {
         error: action.error,
         hasError: true,
         loadingResults: false,
+      };
+    case SET_SUBSITE:
+      debugger;
+      const { payload } = action;
+      return {
+        ...state,
+        data: payload.subsite,
       };
     case RESET_SUBSITE:
       return {
