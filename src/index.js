@@ -1,13 +1,10 @@
-import { getSubsite, resetSubsite } from './actions';
-
 import SubsiteLoader from './SubsiteLoader';
 import { isSubsiteRoot } from './utils';
 import navSVG from '@plone/volto/icons/nav.svg';
+import { resetSubsite } from './actions';
 import { subsiteReducer } from './reducers';
 
-export { SubsiteLoader, isSubsiteRoot };
-
-export { getSubsite, resetSubsite };
+export { SubsiteLoader, isSubsiteRoot, resetSubsite };
 
 export default (config) => {
   // DEPRECATED: BBB

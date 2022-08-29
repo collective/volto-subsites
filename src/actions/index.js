@@ -18,15 +18,15 @@ export const RESET_SUBSITE = 'RESET_SUBSITE';
  * DEPRECATED
  *
  */
-export function getSubsite(url) {
-  return {
-    type: GET_SUBSITE,
-    request: {
-      op: 'get',
-      path: `${url}`,
-    },
-  };
-}
+// export function getSubsite(url) {
+//   return {
+//     type: GET_SUBSITE,
+//     request: {
+//       op: 'get',
+//       path: `${url}`,
+//     },
+//   };
+// }
 
 /**
  * Set subsite
@@ -37,7 +37,7 @@ export function getSubsite(url) {
  * BBB: DEPRECATED
  *
  */
- export function setSubsite(subsite) {
+export function setSubsite(subsite) {
   return {
     type: SET_SUBSITE,
     payload: { subsite },
