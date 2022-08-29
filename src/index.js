@@ -48,7 +48,6 @@ export default (config) => {
     match: '/',
     GET_CONTENT: ['subsite'],
   });
-
   config.settings.controlPanelsIcons['subsites-settings'] = navSVG;
 
   return config;
