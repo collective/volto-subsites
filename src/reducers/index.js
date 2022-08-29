@@ -39,7 +39,6 @@ export const subsiteReducer = (state = initialState, action = {}) => {
         loadingResults: false,
       };
     case SET_SUBSITE:
-      debugger;
       const { payload } = action;
       return {
         ...state,
