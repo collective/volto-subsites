@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 
 const SubsiteLoader = ({ content }) => {
   const subsite = content?.['@components'].subsite;
-  // const subsite = useSelector((state) => state.subsite);
+  // const subsite = useSelector((state) => state.subsite?.data);
   const location = useLocation();
   const dispatch = useDispatch();
 
