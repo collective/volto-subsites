@@ -57,6 +57,3 @@ export default connect(state => ({
 }))(Header);
 ```
 
-> In `volto-subsites >= 3` the subsite data are exposed within the content (i.e. ['@components'].subsite), improving
-> performance, removing unuseful calls to API.
-
