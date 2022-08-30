@@ -1,9 +1,6 @@
 /**
  * Subsite reducer.
  * @module reducers/subsiteReducer
- *
- * DEPRECATED
- *
  */
 
 import { GET_SUBSITE, RESET_SUBSITE, SET_SUBSITE } from '../actions';
@@ -17,27 +14,27 @@ const initialState = {
 
 export const subsiteReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case `${GET_SUBSITE}_PENDING`:
-      return {
-        ...state,
-        loadingResults: true,
-      };
-    case `${GET_SUBSITE}_SUCCESS`:
-      let data = action.result?.['@id'] ? action.result : {};
-
-      return {
-        ...state,
-        data: Object.keys(data).length > 0 ? data : null,
-        loadingResults: false,
-        loaded: true,
-      };
-    case `${GET_SUBSITE}_FAIL`:
-      return {
-        ...state,
-        error: action.error,
-        hasError: true,
-        loadingResults: false,
-      };
+    // DEPRECATED
+    // case `${GET_SUBSITE}_PENDING`:
+    //   return {
+    //     ...state,
+    //     loadingResults: true,
+    //   };
+    // case `${GET_SUBSITE}_SUCCESS`:
+    //   let data = action.result?.['@id'] ? action.result : {};
+    //   return {
+    //     ...state,
+    //     data: Object.keys(data).length > 0 ? data : null,
+    //     loadingResults: false,
+    //     loaded: true,
+    //   };
+    // case `${GET_SUBSITE}_FAIL`:
+    //   return {
+    //     ...state,
+    //     error: action.error,
+    //     hasError: true,
+    //     loadingResults: false,
+    //   };
     case SET_SUBSITE:
       const { payload } = action;
       return {
