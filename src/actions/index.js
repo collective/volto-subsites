@@ -2,7 +2,8 @@
  * Dropdown menu items actions.
  * @module actions/getDropdownMenuNavitems
  */
-export const GET_SUBSITE = 'GET_SUBSITE';
+// export const GET_SUBSITE = 'GET_SUBSITE';
+export const SET_SUBSITE = 'SET_SUBSITE';
 export const RESET_SUBSITE = 'RESET_SUBSITE';
 
 /**
@@ -10,14 +11,30 @@ export const RESET_SUBSITE = 'RESET_SUBSITE';
  * @function getSubsite
  * @returns {Object} Get subsite
  * Es: http://localhost:8080/Plone/@subsite?fullobjects
+ *
+ * DEPRECATED
+ *
  */
-export function getSubsite(url) {
+// export function getSubsite(url) {
+//   return {
+//     type: GET_SUBSITE,
+//     request: {
+//       op: 'get',
+//       path: `${url}`,
+//     },
+//   };
+// }
+
+/**
+ * Set subsite
+ * @function setSubsite
+ * @param {object} subsite Subsite data.
+ * @returns {Object} Get subsite
+ */
+export function setSubsite(subsite) {
   return {
-    type: GET_SUBSITE,
-    request: {
-      op: 'get',
-      path: `${url}`,
-    },
+    type: SET_SUBSITE,
+    payload: { subsite },
   };
 }
 

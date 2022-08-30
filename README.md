@@ -53,6 +53,7 @@ class Header extends Component {
 }
 export default connect(state => ({
   token: state.userSession.token,
-  subsite: state.subsite?.data,
+  subsite: state.content?.data?.['@components']?.subsite;
 }))(Header);
 ```
+
