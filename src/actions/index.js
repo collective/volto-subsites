@@ -33,9 +33,6 @@ export const RESET_SUBSITE = 'RESET_SUBSITE';
  * @function setSubsite
  * @param {object} subsite Subsite data.
  * @returns {Object} Get subsite
- *
- * BBB: DEPRECATED
- *
  */
 export function setSubsite(subsite) {
   return {
@@ -49,9 +46,6 @@ export function setSubsite(subsite) {
  * @function resetContent
  * @param {string} subrequest Key of the subrequest.
  * @returns {Object} Get content action
- *
- * DEPRECATED
- *
  */
 export function resetSubsite() {
   return {
