@@ -1,11 +1,8 @@
 /**
  * Dropdown menu items actions.
  * @module actions/getDropdownMenuNavitems
- *
- * DEPRECATED
- *
  */
-export const GET_SUBSITE = 'GET_SUBSITE';
+// export const GET_SUBSITE = 'GET_SUBSITE';
 export const SET_SUBSITE = 'SET_SUBSITE';
 export const RESET_SUBSITE = 'RESET_SUBSITE';
 

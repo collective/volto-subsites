@@ -3,7 +3,7 @@
  * @module reducers/subsiteReducer
  */
 
-import { GET_SUBSITE, RESET_SUBSITE, SET_SUBSITE } from '../actions';
+import { RESET_SUBSITE, SET_SUBSITE } from '../actions';
 
 const initialState = {
   error: null,
