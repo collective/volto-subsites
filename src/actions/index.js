@@ -32,9 +32,10 @@ export const RESET_SUBSITE = 'RESET_SUBSITE';
  * @returns {Object} Get subsite
  */
 export function setSubsite(subsite) {
+  const _subsite = Object.keys(subsite)?.length > 0 ? subsite : null;
   return {
     type: SET_SUBSITE,
-    payload: { subsite },
+    payload: { subsite: _subsite },
   };
 }
 
