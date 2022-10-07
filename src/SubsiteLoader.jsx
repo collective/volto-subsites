@@ -20,7 +20,7 @@ const SubsiteLoader = ({ content }) => {
 
   // BBB: copy state.content['@components].subsite to state.subsite for backward compatibility
   useEffect(() => {
-    dispatch(setSubsite(content?.['@components'].subsite));
+    dispatch(setSubsite(content?.['@components']?.subsite));
   }, [dispatch, content]);
 
   return subsite && subsite['@id'] ? (
