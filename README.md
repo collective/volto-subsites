@@ -10,6 +10,8 @@ Created with [voltocli](https://github.com/nzambello/voltocli).
 ## Usage
 
 > If you're using Volto < 12, then use [v1.1.0](https://github.com/collective/volto-subsites/tree/v1.1.0)
+>
+> If you're using Volto < 16, then use [v3.0.4](https://github.com/collective/volto-subsites/tree/v3.0.4)
 
 Simply load the addon in your project.
 
