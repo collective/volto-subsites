@@ -4,6 +4,7 @@
  */
 
 import { RESET_SUBSITE, SET_SUBSITE } from '../actions';
+import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
 
 const initialState = {
   error: null,
@@ -13,6 +14,7 @@ const initialState = {
 };
 
 export const subsiteReducer = (state = initialState, action = {}) => {
+  let { result } = action;
   switch (action.type) {
     // DEPRECATED
     // case `${GET_SUBSITE}_PENDING`:
@@ -35,11 +37,24 @@ export const subsiteReducer = (state = initialState, action = {}) => {
     //     hasError: true,
     //     loadingResults: false,
     //   };
+    case `${GET_CONTENT}_SUCCESS`:
+      if (!action.subrequest) {
+        const data = result;
+        const subsite = data?.['@components']?.subsite;
+        return {
+          ...state,
+          data: subsite,
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
     case SET_SUBSITE:
       const { payload } = action;
       return {
         ...state,
-        data: payload.subsite,
+        data: payload?.subsite,
       };
     case RESET_SUBSITE:
       return {
