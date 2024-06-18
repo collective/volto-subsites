@@ -56,9 +56,14 @@ export const subsiteReducer = (state = initialState, action = {}) => {
       }
     case SET_SUBSITE:
       const { payload } = action;
+      const subsite = payload?.subsite ?? null;
       return {
         ...state,
-        data: payload?.subsite,
+        data: subsite
+          ? Object.keys(subsite).length > 0
+            ? subsite
+            : null
+          : null,
       };
     case RESET_SUBSITE:
       return {
