@@ -43,7 +43,11 @@ export const subsiteReducer = (state = initialState, action = {}) => {
         const subsite = data?.['@components']?.subsite;
         return {
           ...state,
-          data: subsite,
+          data: subsite
+            ? Object.keys(subsite).length > 0
+              ? subsite
+              : null
+            : null,
         };
       } else {
         return {
