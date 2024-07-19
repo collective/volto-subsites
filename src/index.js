@@ -6,7 +6,7 @@ import { subsiteReducer } from './reducers';
 
 export { SubsiteLoader, isSubsiteRoot, resetSubsite };
 
-export default (config) => {
+const applyConfig = (config) => {
   // DEPRECATED: BBB
   config.addonReducers = {
     ...config.addonReducers,
@@ -49,3 +49,5 @@ export default (config) => {
 
   return config;
 };
+
+export default applyConfig;
