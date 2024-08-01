@@ -13,7 +13,7 @@ import { setSubsite } from './actions';
 import { useLocation } from 'react-router-dom';
 
 const SubsiteLoader = ({ content }) => {
-  // const subsite = content?.['@components'].subsite;
+  const _subsite = content?.['@components']?.subsite;
   const subsite = useSelector((state) => state.subsite?.data);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -23,10 +23,15 @@ const SubsiteLoader = ({ content }) => {
     dispatch(setSubsite(content?.['@components']?.subsite));
   }, [dispatch, content]);
 
-  return subsite && subsite['@id'] ? (
+  if (__SERVER__) {
+    dispatch(setSubsite(content?.['@components']?.subsite));
+  }
+
+  const s = subsite ?? _subsite;
+  return s && s['@id'] ? (
     <BodyClass
-      className={cx('subsite', `subsite-${subsite.subsite_css_class?.token}`, {
-        'subsite-root': isSubsiteRoot(location.pathname, subsite),
+      className={cx('subsite', `subsite-${s.subsite_css_class?.token}`, {
+        'subsite-root': isSubsiteRoot(location.pathname, s),
       })}
     />
   ) : null;
