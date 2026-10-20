@@ -1,0 +1,1 @@
+Added a Vitest setup (`vitest.config.mjs`), the Cypress and Storybook scaffolds, and GitHub Actions workflows for CI and the towncrier changelog check, following the Volto 19 add-on structure. The changelog workflow now targets `master`, the default branch of the repository, instead of the non-existent `main` branch.
