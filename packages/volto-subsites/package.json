@@ -1,0 +1,44 @@
+{
+  "name": "volto-subsites",
+  "version": "4.0.2",
+  "description": "Volto add-on for Plone subsites",
+  "main": "src/index.js",
+  "author": "Plone Collective",
+  "homepage": "https://github.com/collective/volto-subsites",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:collective/volto-subsites"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
+    "dry-release": "release-it --dry-run",
+    "release": "release-it",
+    "release-major-alpha": "release-it major --preRelease=alpha",
+    "release-alpha": "release-it --preRelease=alpha"
+  },
+  "addons": [],
+  "theme": "",
+  "dependencies": {},
+  "peerDependencies": {
+    "@plone/volto": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@plone/registry": "workspace:*",
+    "@plone/scripts": "workspace:*",
+    "@testing-library/react": "^16.2.0",
+    "release-it": "^19.0.5",
+    "vitest": "^3.1.2"
+  }
+}
