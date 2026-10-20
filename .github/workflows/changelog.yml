@@ -3,10 +3,10 @@ on:
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled, unlabeled]
     branches:
-      - main
+      - master
 
 env:
-  base-branch: main
+  base-branch: master
 
 permissions:
   contents: read
