@@ -24,7 +24,7 @@ const SubsiteLoader = ({ content }) => {
   }, [dispatch, content]);
 
   if (__SERVER__) {
-    dispatch(setSubsite(content?.['@components']?.subsite));
+    dispatch(setSubsite(_subsite));
   }
 
   const s = subsite ?? _subsite;
