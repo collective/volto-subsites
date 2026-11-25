@@ -1,0 +1,1 @@
+Cover `SubsiteLoader` with unit tests: the body classes on the subsite root and below it, and the two cases that render nothing. The tests resolve `react-redux`, `redux`, `classnames` and `react-router-dom` from Volto, because pnpm does not link Volto's dependencies into the add-on package.
