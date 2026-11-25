@@ -1,6 +1,6 @@
 {
   "name": "volto-subsites-dev",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "Volto add-on for Plone subsites",
   "author": "Plone Collective",
   "homepage": "https://github.com/collective/volto-subsites",

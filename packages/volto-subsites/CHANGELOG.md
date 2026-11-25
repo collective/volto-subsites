@@ -8,6 +8,28 @@
 
 <!-- towncrier release notes start -->
 
+## 5.0.0 (2026-11-25)
+
+
+### Breaking
+
+- Volto 19 support. The add-on is developed and released for Volto 19 and also builds against Volto 18, which the unit tests cover; projects on Volto 16 or 17 should stay on the 4.x line. The repository is a pnpm monorepo and the add-on moved to `packages/volto-subsites`; the Yarn and npm lock files were replaced by pnpm (`pnpm-lock.yaml`, `pnpm-workspace.yaml`, `packageManager: pnpm@10.20.0`), so the development workflow is now `pnpm install`, `pnpm start`, `pnpm test`, and `pnpm build`. 
+
+
+### Bugfix
+
+- Ship the LICENSE file in the published package: npm takes it only from the package directory, so the npm page had no license text even though the package declares MIT. 
+
+
+### Internal
+
+- Added a Vitest setup (`vitest.config.mjs`), the Cypress and Storybook scaffolds, and GitHub Actions workflows for CI and the towncrier changelog check, following the Volto 19 add-on structure. The changelog workflow now targets `master`, the default branch of the repository, instead of the non-existent `main` branch. 
+
+
+### Documentation
+
+- Added the Sphinx documentation scaffold using Plone Sphinx Theme with a Read the Docs configuration, added the towncrier `news/` directory, and backfilled the release notes of the 1.0.0 to 4.0.2 releases from the Git history. 
+
 ## 4.0.2 (2024-06-18)
 
 ### Bugfix
