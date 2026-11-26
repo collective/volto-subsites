@@ -1,1 +1,0 @@
-Align the `SubsiteLoader` tests with the SSR fallback: content carrying a subsite while the store is empty renders the body classes, and only a missing subsite in both places renders nothing.

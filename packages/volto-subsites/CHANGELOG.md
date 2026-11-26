@@ -8,6 +8,26 @@
 
 <!-- towncrier release notes start -->
 
+## 5.0.1 (2026-11-26)
+
+
+### Bugfix
+
+- Render the subsite body class on the server too.
+
+  `SubsiteLoader` read the subsite only from the store, where it arrives through the `useEffect` hook. An effect does not run during server rendering, so the server HTML of a subsite page had no `subsite` / `subsite-root` body class and the class appeared only after hydration. The component now falls back to the `subsite` component of the content object it already receives, and copies it into the store during server rendering, so the server and the client produce the same body classes. 
+
+
+### Internal
+
+- Cover `SubsiteLoader` with unit tests: the body classes on the subsite root and below it, and the two cases that render nothing. The tests resolve `react-redux`, `redux`, `classnames` and `react-router-dom` from Volto, because pnpm does not link Volto's dependencies into the add-on package. 
+- Publish to npm from GitHub Actions with trusted publishing (OIDC) and provenance, in the `npm` environment, when a GitHub release is published. `make release` no longer publishes from the local machine. 
+
+
+### Tests
+
+- Align the `SubsiteLoader` tests with the SSR fallback: content carrying a subsite while the store is empty renders the body classes, and only a missing subsite in both places renders nothing. 
+
 ## 5.0.0 (2026-11-25)
 
 
