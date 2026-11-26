@@ -47,7 +47,8 @@ jobs:
           PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           version="$(node -p "require('./package.json').version")"
-          if [ "$version" != "$TAG_NAME" ]; then
+          # release-it tags as v${version}
+          if [ "v$version" != "$TAG_NAME" ]; then
             echo "::error::package.json version ($version) does not match release tag ($TAG_NAME)"
             exit 1
           fi
