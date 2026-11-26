@@ -60,11 +60,22 @@ describe('SubsiteLoader', () => {
     );
   });
 
-  it('renders no body class when the store has no subsite', () => {
+  it('adds the subsite classes from the content when the store has no subsite', () => {
     withStore(null);
     atPath('/en/news');
 
     render(<SubsiteLoader content={content} />);
+
+    expect(screen.getByTestId('body-class').dataset.classname).toBe(
+      'subsite subsite-news subsite-root',
+    );
+  });
+
+  it('renders no body class when neither the store nor the content has a subsite', () => {
+    withStore(null);
+    atPath('/en/news');
+
+    render(<SubsiteLoader content={{}} />);
 
     expect(screen.queryByTestId('body-class')).toBeNull();
   });
