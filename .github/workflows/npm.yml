@@ -1,0 +1,77 @@
+name: Release to npm
+
+# Publishes the add-on to npm with trusted publishing (OIDC) when a GitHub
+# release is published by `make release` (release-it). No npm token is stored:
+# npm trusts this workflow file + the `npm` environment of this repository.
+
+on:
+  release:
+    types: [published]
+
+permissions: {}
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
+
+jobs:
+  release_to_npm:
+    name: Release to npm
+    runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/volto-subsites
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: packages/volto-subsites
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Compute version and dist-tag
+        id: meta
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          PRERELEASE: ${{ github.event.release.prerelease }}
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "$version" != "$TAG_NAME" ]; then
+            echo "::error::package.json version ($version) does not match release tag ($TAG_NAME)"
+            exit 1
+          fi
+          if [ "$PRERELEASE" = "true" ]; then
+            # 6.0.0-alpha.1 -> alpha
+            dist_tag="$(echo "$version" | sed -E 's/^[^-]+-([a-zA-Z]+).*/\1/')"
+            if [ -z "$dist_tag" ] || [ "$dist_tag" = "$version" ]; then
+              dist_tag="next"
+            fi
+          else
+            dist_tag="latest"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "dist-tag=$dist_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare package
+        run: |
+          # README lives at the repo root; release-it used to copy it in locally.
+          cp ../../README.md ./README.md
+          # devDependencies use the pnpm `workspace:` protocol, which npm cannot
+          # publish and consumers never need.
+          npm pkg delete devDependencies
+
+      - name: Publish to npm
+        env:
+          DIST_TAG: ${{ steps.meta.outputs.dist-tag }}
+        run: npm publish --provenance --access public --tag "$DIST_TAG"

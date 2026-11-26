@@ -16,7 +16,7 @@
     "publish": false
   },
   "plonePrePublish": {
-    "publish": true
+    "publish": false
   },
   "git": {
     "changelog": "uvx towncrier build --draft --yes --version 0.0.0",
