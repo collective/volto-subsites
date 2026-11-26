@@ -1,7 +1,4 @@
 {
-  "plugins": {
-    "../../core/packages/scripts/prepublish.js": {}
-  },
   "hooks": {
     "after:bump": [
       "uvx towncrier build --draft --yes --version ${version} > .changelog.draft",
@@ -15,15 +12,12 @@
   "npm": {
     "publish": false
   },
-  "plonePrePublish": {
-    "publish": true
-  },
   "git": {
     "changelog": "uvx towncrier build --draft --yes --version 0.0.0",
     "requireUpstream": false,
     "requireCleanWorkingDir": false,
     "commitMessage": "Release ${version}",
-    "tagName": "${version}",
+    "tagName": "v${version}",
     "tagAnnotation": "Release ${version}"
   },
   "github": {
